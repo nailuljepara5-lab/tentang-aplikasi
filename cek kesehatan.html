@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SehatKu-Cek Kondisi Tubuhmu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            /* Green vibe */
+            --secondary-gradient: linear-gradient(135deg, #F59E0B 0%, #EF4444 100%);
+            --success-gradient: linear-gradient(135deg, #059669 0%, #047857 100%);
+            --bg-color: #F0FDF4;
+            /* Sangat terang hijau/putih */
+            --card-bg: #FFFFFF;
+            /* Putih solid */
+            --text-main: #064E3B;
+            /* Hijau sangat gelap */
+            --text-muted: #475569;
+            --input-bg: #F8FAFC;
+            /* Abu-abu keputihan terang solid */
+            --border-color: #E2E8F0;
+
+            --danger: #EF4444;
+            --warning: #F59E0B;
+            --success: #10B981;
+            --info: #0EA5E9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: url('https://images.unsplash.com/photo-1584432810601-6c7f27d2362b?q=80&w=2083&auto=format&fit=crop');
+            /* Gambar P3K/PMR First Aid */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-main);
+            padding: 40px 20px;
+        }
+
+        .container {
+            background: var(--card-bg);
+            /* Putih pekat */
+            border-radius: 32px;
+            padding: 45px;
+            width: 100%;
+            max-width: 900px;
+            box-shadow: 0 20px 40px rgba(5, 150, 105, 0.15);
+            /* Bayangan hijau halus */
+            border: 1px solid var(--border-color);
+            position: relative;
+            z-index: 10;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .icon-wrapper {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-gradient);
+            border-radius: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 20px;
+            box-shadow: 0 15px 30px rgba(2, 132, 199, 0.4);
+            transform: rotate(-10deg);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .container:hover .icon-wrapper {
+            transform: rotate(0deg) scale(1.05);
+        }
+
+        h1 {
+            font-size: 38px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            color: #064E3B;
+            /* Hijau teks gelap */
+            letter-spacing: -1px;
+        }
+
+        p.subtitle {
+            color: var(--text-muted);
+            font-size: 16px;
+            line-height: 1.6;
+            max-width: 550px;
+            margin: 0 auto;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        @media (max-width: 700px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .section-title {
+            grid-column: 1 / -1;
+            margin-top: 25px;
+            font-size: 19px;
+            font-weight: 600;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-title span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background: rgba(16, 185, 129, 0.15);
+            /* Hijau muda */
+            color: #059669;
+            /* Hijau */
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        label.main-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #334155;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 16px 20px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            background: var(--input-bg);
+            font-size: 15px;
+            color: #0F172A;
+            transition: all 0.3s;
+            outline: none;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #10B981;
+            /* Hijau border focus */
+            background: #FFFFFF;
+            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.15);
+            /* Hijau shadow */
+        }
+
+        select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23334155'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1.2rem center;
+            background-size: 1.2rem;
+            padding-right: 3rem;
+        }
+
+        select option {
+            background-color: #FFFFFF;
+            color: #0F172A;
+        }
+
+        /* Modern Radio Buttons for Stress Level & Activity */
+        .radio-pills {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .radio-pill {
+            position: relative;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .radio-pill input {
+            display: none;
+        }
+
+        .radio-pill label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            background: #F8FAFC;
+            /* Putih/Abu terang solid */
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #334155;
+            height: 100%;
+        }
+
+        .radio-pill label span.emoji {
+            font-size: 24px;
+        }
+
+        .radio-pill input:checked+label {
+            background: #ECFDF5;
+            /* Hijau super muda solid */
+            border-color: #10B981;
+            /* Border Hijau */
+            color: #047857;
+            /* Teks hijau gelap */
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+        }
+
+        /* Checkboxes for Symptoms */
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            padding: 14px 18px;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: #F8FAFC;
+            /* Putih terang solid */
+            font-size: 14px;
+            color: #475569;
+            font-weight: 600;
+            user-select: none;
+        }
+
+        .checkbox-label:hover {
+            border-color: #CBD5E1;
+        }
+
+        .checkbox-label input {
+            display: none;
+        }
+
+        .checkbox-custom {
+            width: 22px;
+            height: 22px;
+            border: 2px solid #94A3B8;
+            border-radius: 6px;
+            margin-right: 14px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s;
+            background: #FFFFFF;
+        }
+
+        .checkbox-label input:checked+.checkbox-custom {
+            background: var(--primary-gradient);
+            border-color: transparent;
+        }
+
+        .checkbox-label input:checked+.checkbox-custom::after {
+            content: '';
+            width: 6px;
+            height: 12px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+            margin-bottom: 2px;
+        }
+
+        .checkbox-label.active {
+            border-color: #10B981;
+            background: #ECFDF5;
+            color: #047857;
+        }
+
+        /* Range Slider */
+        .water-tracker {
+            text-align: center;
+        }
+
+        .water-tracker input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: transparent;
+            margin-bottom: 15px;
+            padding: 0;
+        }
+
+        .water-tracker input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 8px;
+            cursor: pointer;
+            background: #E2E8F0;
+            /* Abu terang */
+            border-radius: 10px;
+        }
+
+        .water-tracker input[type=range]::-webkit-slider-thumb {
+            height: 24px;
+            width: 24px;
+            border-radius: 50%;
+            background: #10B981;
+            /* Handle warna Hijau */
+            cursor: pointer;
+            -webkit-appearance: none;
+            margin-top: -8px;
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+            transition: transform 0.1s;
+        }
+
+        .water-tracker input[type=range]::-webkit-slider-thumb:active {
+            transform: scale(1.2);
+        }
+
+        .water-display {
+            font-size: 24px;
+            font-weight: 800;
+            color: #059669;
+            /* Teks Hijau Gelas Air */
+            margin-top: 10px;
+        }
+
+        button.btn-primary {
+            width: 100%;
+            padding: 18px;
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            border-radius: 16px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
+            /* Hijau shadow */
+            margin-top: 40px;
+            letter-spacing: 0.5px;
+        }
+
+        button.btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px rgba(2, 132, 199, 0.4);
+        }
+
+        /* RESULTS SECTION --------------------------------------------------- */
+        #results {
+            display: none;
+            animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: conic-gradient(var(--konik-color, #10B981) var(--score), #E2E8F0 0);
+            /* Background abu saat kosong */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            position: relative;
+        }
+
+        .score-circle::before {
+            content: '';
+            position: absolute;
+            width: 130px;
+            height: 130px;
+            background: #FFFFFF;
+            /* Inner circle putih solid */
+            border-radius: 50%;
+        }
+
+        .score-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .score-number {
+            font-size: 42px;
+            font-weight: 800;
+            line-height: 1;
+            color: #064E3B;
+            /* Angka hijau super gelap */
+        }
+
+        .score-label {
+            font-size: 12px;
+            color: #64748B;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+
+        .result-intro {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .result-intro h2 {
+            font-size: 28px;
+            color: #064E3B;
+            /* Hijau teks title result */
+            margin-bottom: 5px;
+        }
+
+        .result-card {
+            background: #F8FAFC;
+            /* Putih terang solid */
+            border-radius: 20px;
+            padding: 24px;
+            border: 1px solid #E2E8F0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .result-title {
+            font-size: 13px;
+            color: #475569;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .result-value {
+            font-size: 28px;
+            font-weight: 800;
+            color: #0F172A;
+            line-height: 1.2;
+        }
+
+        .result-desc {
+            font-size: 14px;
+            color: #334155;
+            line-height: 1.5;
+        }
+
+        .result-status {
+            font-size: 14px;
+            font-weight: 700;
+            display: inline-flex;
+            padding: 6px 14px;
+            border-radius: 20px;
+            width: max-content;
+        }
+
+        .status-danger {
+            background: rgba(239, 68, 68, 0.15);
+            color: #FCA5A5;
+        }
+
+        .status-warning {
+            background: rgba(245, 158, 11, 0.15);
+            color: #FCD34D;
+        }
+
+        .status-success {
+            background: rgba(16, 185, 129, 0.15);
+            color: #6EE7B7;
+        }
+
+        .summary {
+            background: #ECFDF5;
+            /* Background sangat terang hijau */
+            padding: 30px;
+            border-radius: 24px;
+            margin-top: 30px;
+            border: 1px solid #A7F3D0;
+            /* Border hijau muda terang */
+        }
+
+        .summary-header {
+            font-weight: 800;
+            font-size: 20px;
+            color: #047857;
+            /* Hijau Teks Header */
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #A7F3D0;
+        }
+
+        .summary ul {
+            list-style: none;
+        }
+
+        .summary li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 15px;
+            color: #1E293B;
+            /* Teks dark blue/gray solid */
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        .summary li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #10B981;
+            /* Panah Hijau */
+            font-weight: bold;
+        }
+
+        .btn-outline {
+            background: #FFFFFF;
+            color: #10B981;
+            font-weight: 700;
+            border: 2px solid #10B981;
+            padding: 16px;
+            border-radius: 16px;
+            width: 100%;
+            cursor: pointer;
+            margin-top: 24px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .btn-outline:hover {
+            background: #F0FDF4;
+            /* Hijau efek hover btn */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div id="formSection">
+            <div class="header">
+                <div class="icon-wrapper">
+                    <svg width="40" height="40" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        style="color: white; stroke-width: 2;">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
+                        </path>
+                    </svg>
+                </div>
+                <h1>SehatKu-Cek Kondisi Tubuhmu</h1>
+                <p class="subtitle">Analisis gaya hidup komprehensif: Fisik, Pola Tidur, Hidrasi, dan Tingkat Stres
+                    Harian.</p>
+            </div>
+
+            <form id="healthForm">
+                <div class="form-grid">
+
+                    <div class="form-group full-width">
+                        <label class="main-label" for="nama">Nama Anda</label>
+                        <input type="text" id="nama" required placeholder="Siapa yang sedang melakukan pengecekan?">
+                    </div>
+
+                    <!-- SECTION 1: FISIK -->
+                    <div class="section-title"><span>1</span> Parameter Anatomi</div>
+
+                    <div class="form-group">
+                        <label class="main-label" for="berat">Berat Badan (kg)</label>
+                        <input type="number" id="berat" required placeholder="Contoh: 65" min="20" max="300" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label class="main-label" for="tinggi">Tinggi Badan (cm)</label>
+                        <input type="number" id="tinggi" required placeholder="Contoh: 170" min="50" max="250">
+                    </div>
+
+                    <!-- NEW SECTION: HIDRASI -->
+                    <div class="section-title"><span>2</span> Intake Cairan</div>
+
+                    <div class="form-group full-width water-tracker">
+                        <label class="main-label">Berapa gelas air putih yang Anda minum hari ini?
+                            (~250ml/gelas)</label>
+                        <input type="range" id="airPutih" min="0" max="15" value="4"
+                            oninput="document.getElementById('waterVal').innerText = this.value">
+                        <div class="water-display"><span id="waterVal">4</span> Gelas (<span id="waterLtr">1.0</span>
+                            Liter)</div>
+                    </div>
+
+                    <!-- SECTION 3: TIDUR -->
+                    <div class="section-title"><span>3</span> Evaluasi Rehat</div>
+
+                    <div class="form-group">
+                        <label class="main-label" for="durasiTidur">Total Jam Tidur Malam</label>
+                        <input type="number" id="durasiTidur" required placeholder="Contoh: 7.5" min="1" max="24"
+                            step="0.5">
+                    </div>
+                    <div class="form-group">
+                        <label class="main-label" for="kualitasTidur">Kualitas Tidur</label>
+                        <select id="kualitasTidur" required>
+                            <option value="" disabled selected>Pilih salah satu...</option>
+                            <option value="nyenyak">Sangat Pulas & Nyenyak</option>
+                            <option value="sedang">Biasa / Sering Terbangun</option>
+                            <option value="buruk">Sulit Tidur / Insomnia</option>
+                        </select>
+                    </div>
+
+                    <!-- NEW SECTION: STRES & AKTIVITAS -->
+                    <div class="section-title"><span>4</span> Kondisi Psikologis & Aktivitas</div>
+
+                    <div class="form-group full-width">
+                        <label class="main-label">Bagaimana level stres Anda belakangan ini?</label>
+                        <div class="radio-pills">
+                            <div class="radio-pill">
+                                <input type="radio" id="stress1" name="stress" value="Rendah" required>
+                                <label for="stress1"><span class="emoji">🧘‍♂️</span> Santai / Damai</label>
+                            </div>
+                            <div class="radio-pill">
+                                <input type="radio" id="stress2" name="stress" value="Sedang">
+                                <label for="stress2"><span class="emoji">🤔</span> Normal / Sibuk</label>
+                            </div>
+                            <div class="radio-pill">
+                                <input type="radio" id="stress3" name="stress" value="Tinggi">
+                                <label for="stress3"><span class="emoji">🤯</span> Tertekan / Cemas</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label class="main-label">Seberapa aktif fisik Anda minggu ini?</label>
+                        <select id="aktivitas" required>
+                            <option value="" disabled selected>Pilih tingkat aktivitas fisik...</option>
+                            <option value="jarang">Jarang (Duduk terus seharian)</option>
+                            <option value="sedang">Sedang (Jalan kaki, kerja rumah tangga)</option>
+                            <option value="aktif">Aktif (Olahraga rutin 2-3x seminggu)</option>
+                        </select>
+                    </div>
+
+                    <!-- SECTION 5: GEJALA -->
+                    <div class="section-title"><span>5</span> Skrining Gejala</div>
+
+                    <div class="form-group full-width">
+                        <label class="main-label">Apakah Anda merasakan keluhan berikut? (Bisa pilih &gt;1)</label>
+                        <div class="checkbox-grid">
+                            <label class="checkbox-label" onclick="toggleActive(this)">
+                                <input type="checkbox" name="gejala" value="Sakit Kepala">
+                                <div class="checkbox-custom"></div><span>Sakit Kepala</span>
+                            </label>
+                            <label class="checkbox-label" onclick="toggleActive(this)">
+                                <input type="checkbox" name="gejala" value="Batuk / Pilek">
+                                <div class="checkbox-custom"></div><span>Batuk / Pilek</span>
+                            </label>
+                            <label class="checkbox-label" onclick="toggleActive(this)">
+                                <input type="checkbox" name="gejala" value="Demam Hati">
+                                <div class="checkbox-custom"></div><span>Demam / Meriang</span>
+                            </label>
+                            <label class="checkbox-label" onclick="toggleActive(this)">
+                                <input type="checkbox" name="gejala" value="Pegal Linu">
+                                <div class="checkbox-custom"></div><span>Pegal Linu</span>
+                            </label>
+                            <label class="checkbox-label" onclick="toggleActive(this)">
+                                <input type="checkbox" name="gejala" value="Mual / Pencernaan">
+                                <div class="checkbox-custom"></div><span>Mual / Perut</span>
+                            </label>
+                            <label class="checkbox-label active" id="lblTidakAda" onclick="toggleTidakAda(this)">
+                                <input type="checkbox" id="chkTidakAda" value="Tidak Ada" checked>
+                                <div class="checkbox-custom"></div><span style="font-weight: 700; color: #047857;">Tidak
+                                    Ada Gejala</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary">Generate Laporan 360°</button>
+            </form>
+        </div>
+
+        <!-- ======================= RESULTS SECTION ======================= -->
+
+        <div id="results">
+            <div class="result-intro">
+                <h2>Health Report 360°</h2>
+                <p>Pasien/Subjek: <strong id="resNama" style="color: #10B981;"></strong></p>
+            </div>
+
+            <div class="score-circle" id="scoreGraphic" style="--score: 0%;">
+                <div class="score-content">
+                    <div class="score-number" id="overallScore">0</div>
+                    <div class="score-label">Skor Kesehatan</div>
+                </div>
+            </div>
+
+            <div class="form-grid">
+                <!-- BMI & Fisik -->
+                <div class="result-card" id="cardBMI">
+                    <div class="result-title">🏋️ Anatomi (BMI)</div>
+                    <div class="result-value" id="valBMI">22.5</div>
+                    <div class="result-status" id="statusBMI">Normal</div>
+                    <div class="result-desc" id="descBMI" style="margin-top: 5px;"></div>
+                </div>
+
+                <!-- Hydration -->
+                <div class="result-card" id="cardWater">
+                    <div class="result-title">💧 Hidrasi</div>
+                    <div class="result-value" id="valWater">1.5 L</div>
+                    <div class="result-status" id="statusWater">Cukup</div>
+                    <div class="result-desc" id="descWater" style="margin-top: 5px;"></div>
+                </div>
+
+                <!-- Sleep -->
+                <div class="result-card" id="cardSleep">
+                    <div class="result-title">🛌 Tidur & Rehat</div>
+                    <div class="result-value" id="valSleep">7 Jam</div>
+                    <div class="result-status" id="statusSleep">Sehat</div>
+                    <div class="result-desc" id="descSleep" style="margin-top: 5px;"></div>
+                </div>
+
+                <!-- Stress & Mind -->
+                <div class="result-card" id="cardStress">
+                    <div class="result-title">🧠 Psikologis</div>
+                    <div class="result-value" id="valStress">Sedang</div>
+                    <div class="result-status" id="statusStress">Terjaga</div>
+                    <div class="result-desc" id="descStress" style="margin-top: 5px;"></div>
+                </div>
+
+                <!-- Symptoms -->
+                <div class="result-card full-width" id="cardSymp">
+                    <div class="result-title">🩺 Gejala Fisik</div>
+                    <div id="valSymptoms" style="margin: 10px 0; font-weight: 700; color: #1E293B;"></div>
+                    <div class="result-status" id="statusSymp">Aman</div>
+                </div>
+            </div>
+
+            <div class="summary">
+                <div class="summary-header">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                    Action Plan (Rencana Tindakan)
+                </div>
+                <div id="resRekomendasi"></div>
+            </div>
+
+            <button type="button" class="btn-outline" id="resetBtn">Mulai Tes Baru</button>
+        </div>
+    </div>
+
+    <script>
+        // Update Water Liter display
+        document.getElementById('airPutih').addEventListener('input', function () {
+            document.getElementById('waterLtr').innerText = (this.value * 0.25).toFixed(1);
+        });
+
+        // Checkbox Logic: Mutual Exclusion
+        const symptomCheckboxes = document.querySelectorAll('input[name="gejala"]');
+        const chkTidakAda = document.getElementById('chkTidakAda');
+
+        function toggleActive(lbl) {
+            const cb = lbl.querySelector('input');
+            setTimeout(() => {
+                if (cb.checked) {
+                    lbl.classList.add('active');
+                    chkTidakAda.checked = false;
+                    document.getElementById('lblTidakAda').classList.remove('active');
+                } else {
+                    lbl.classList.remove('active');
+                }
+            }, 10);
+        }
+
+        function toggleTidakAda(lbl) {
+            setTimeout(() => {
+                if (chkTidakAda.checked) {
+                    lbl.classList.add('active');
+                    symptomCheckboxes.forEach(cb => {
+                        cb.checked = false;
+                        cb.parentElement.classList.remove('active');
+                    });
+                } else {
+                    lbl.classList.remove('active');
+                }
+            }, 10);
+        }
+
+        // Form Submit & Analysis
+        document.getElementById('healthForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            let totalScore = 100; // Start with perfect 100% score
+            let actionPlans = [];
+
+            // 1. Get Base Data
+            const nama = document.getElementById('nama').value;
+            const berat = parseFloat(document.getElementById('berat').value);
+            const tinggiCM = parseFloat(document.getElementById('tinggi').value);
+            const airGelas = parseInt(document.getElementById('airPutih').value);
+            const durasiTidur = parseFloat(document.getElementById('durasiTidur').value);
+            const kualitasTidur = document.getElementById('kualitasTidur').value;
+            const stress = document.querySelector('input[name="stress"]:checked')?.value || 'Sedang';
+            const aktivitas = document.getElementById('aktivitas').value;
+
+            // --- BMI CALCULATION ---
+            const tinggiM = tinggiCM / 100;
+            const bmi = (berat / (tinggiM * tinggiM)).toFixed(1);
+
+            let statusBMI, classBMI, dBMI;
+            if (bmi < 18.5) {
+                statusBMI = 'Underweight'; classBMI = 'warning'; dBMI = 'Berat di bawah rata-rata.';
+                totalScore -= 10;
+                actionPlans.push("Tambah kalori (protein & lemak sehat) untuk menaikkan massa otot tubuh.");
+            } else if (bmi >= 18.5 && bmi <= 24.9) {
+                statusBMI = 'Normal'; classBMI = 'success'; dBMI = 'Proporsi ideal.';
+            } else if (bmi >= 25 && bmi <= 29.9) {
+                statusBMI = 'Overweight'; classBMI = 'warning'; dBMI = 'Kelebihan berat ringan.';
+                totalScore -= 10;
+                actionPlans.push("Kurangi konsumsi gula/lemak jahat. Jaga defisit kalori ringan.");
+            } else {
+                statusBMI = 'Obesitas'; classBMI = 'danger'; dBMI = 'Risiko tinggi metabolik.';
+                totalScore -= 20;
+                actionPlans.push("Urgent: Konsultasikan pola makan dengan ahli gizi. Olahraga kardio ringan wajib mulai dilakukan.");
+            }
+
+            // --- HYDRATION ---
+            let statusWater, classWater, dWater;
+            const liter = (airGelas * 0.25).toFixed(1);
+            if (airGelas >= 8) {
+                statusWater = 'Optimal'; classWater = 'success'; dWater = 'Tubuh terhidrasi penuh.';
+            } else if (airGelas >= 5) {
+                statusWater = 'Kurang'; classWater = 'warning'; dWater = 'Sedikit dehidrasi.';
+                totalScore -= 5;
+                actionPlans.push("Tingkatkan asupan air putih. Usahakan minum 8 gelas (2 Liter) hari ini.");
+            } else {
+                statusWater = 'Dehidrasi Berat'; classWater = 'danger'; dWater = 'Bahaya untuk ginjal.';
+                totalScore -= 15;
+                actionPlans.push("Dehidrasi mengacaukan fungsi otak. Segera minum 1-2 gelas air sekarang!");
+            }
+
+            // --- SLEEP CALCULATION ---
+            let statusSleep, classSleep, dSleep;
+            let bedScore = 0;
+            if (durasiTidur >= 7 && durasiTidur <= 9) bedScore += 2;
+            else if (durasiTidur >= 6) bedScore += 1;
+
+            if (kualitasTidur === 'nyenyak') bedScore += 2;
+            else if (kualitasTidur === 'sedang') bedScore += 1;
+
+            if (bedScore === 4) {
+                statusSleep = 'Prima'; classSleep = 'success'; dSleep = 'Pemulihan tubuh sempurna.';
+            } else if (bedScore >= 2) {
+                statusSleep = 'Biasa'; classSleep = 'warning'; dSleep = 'Terkadang terasa ngantuk.';
+                totalScore -= 10;
+                actionPlans.push("Usahakan tidur 7-8 jam dengan lampu redup/mati agar hormon perbaikan tubuh bekerja.");
+            } else {
+                statusSleep = 'Buruk'; classSleep = 'danger'; dSleep = 'Fase kurang tidur kronis.';
+                totalScore -= 20;
+                actionPlans.push("Hati-hati, kelelahan mental! Jauhkan HP dari kasur dan cobalah disiplin jam tidur malam ini.");
+            }
+
+            // --- STRESS & ACTIVITY ---
+            let statusStress, classStress, dStress;
+            if (stress === 'Tinggi') {
+                statusStress = 'Waspada (Tinggi)'; classStress = 'danger'; dStress = 'Hormon kortisol memuncak.';
+                totalScore -= 15;
+                actionPlans.push("Anda butuh jeda (me time). Lakukan hobi santai, jalan di alam, atau meditasi 10 menit.");
+            } else if (stress === 'Sedang') {
+                statusStress = 'Normal'; classStress = 'warning'; dStress = 'Beban pikiran standar hari kerja.';
+                totalScore -= 5;
+            } else {
+                statusStress = 'Tenang (Rendah)'; classStress = 'success'; dStress = 'Mental sehat dan jernih.';
+            }
+
+            if (aktivitas === 'jarang') {
+                totalScore -= 10;
+                actionPlans.push("Tubuh Anda statis. Lakukan peregangan tiap 1 jam kerja, atau jalan kaki sore rutin.");
+            }
+
+            // --- SYMPTOMS ---
+            let gejalaDialami = [];
+            if (!chkTidakAda.checked) {
+                symptomCheckboxes.forEach(cb => { if (cb.checked) gejalaDialami.push(cb.value); });
+            }
+
+            let statusSymp, classSymp;
+            if (gejalaDialami.length === 0) {
+                statusSymp = 'Sehat Bugar'; classSymp = 'success';
+                document.getElementById('valSymptoms').textContent = "Tidak Ada Keluhan 💯";
+            } else {
+                document.getElementById('valSymptoms').innerHTML = gejalaDialami.map(g => `<span style="background:#E2E8F0; padding:4px 10px; border-radius:8px; font-size:13px; margin-right:5px; border:1px solid #CBD5E1; color:#334155;">${g}</span>`).join('');
+
+                if (gejalaDialami.length >= 3 || gejalaDialami.includes("Demam Hati")) {
+                    statusSymp = 'Butuh Dokter'; classSymp = 'danger';
+                    totalScore -= 25;
+                    actionPlans.unshift("🚨 PRIORITAS: Anda mengalami gejala penularan/infeksi. Berhenti aktivitas berat dan periksa ke klinik jika memburuk.");
+                } else {
+                    statusSymp = 'Gejala Ringan'; classSymp = 'warning';
+                    totalScore -= 10;
+                    actionPlans.unshift("Ringankan beban kerja hari ini. Tubuh mengirim sinyal minta istirahat (Gejala Ringan).");
+                }
+            }
+
+            // Prevent score dripping below 0
+            if (totalScore < 10) totalScore = 10;
+            if (gejalaDialami.length === 0 && aktivitas === 'aktif' && stress === 'Rendah' && statusWater === 'Optimal' && statusSleep === 'Prima' && statusBMI === 'Normal') {
+                actionPlans.push("Luar biasa! Seluruh metrik Anda sempurna. Pertahankan gaya hidup emas ini!");
+            }
+
+            // --- UPDATE DOM ---
+            document.getElementById('resNama').textContent = nama;
+
+            // Graphic Score Animation
+            document.getElementById('overallScore').textContent = '0';
+            let currentDisplay = 0;
+            const scoreInterval = setInterval(() => {
+                if (currentDisplay >= totalScore) { clearInterval(scoreInterval); }
+                else {
+                    currentDisplay += 1;
+                    document.getElementById('overallScore').textContent = currentDisplay;
+                    const deg = (currentDisplay / 100) * 360;
+
+                    // color mapping for circle
+                    let cColor = '#10B981'; // green
+                    if (currentDisplay < 50) cColor = '#EF4444'; // red
+                    else if (currentDisplay < 80) cColor = '#F59E0B'; // yellow
+
+                    document.getElementById('scoreGraphic').style.setProperty('--konik-color', cColor);
+                    document.getElementById('scoreGraphic').style.background = `conic-gradient(${cColor} ${deg}deg, #E2E8F0 0)`;
+                }
+            }, 10);
+
+            // Populate Cards
+            document.getElementById('valBMI').textContent = bmi;
+            document.getElementById('statusBMI').textContent = statusBMI;
+            document.getElementById('statusBMI').className = `result-status status-${classBMI}`;
+            document.getElementById('descBMI').textContent = dBMI;
+
+            document.getElementById('valWater').textContent = liter + ' L';
+            document.getElementById('statusWater').textContent = statusWater;
+            document.getElementById('statusWater').className = `result-status status-${classWater}`;
+            document.getElementById('descWater').textContent = dWater;
+
+            document.getElementById('valSleep').textContent = durasiTidur + ' Jam';
+            document.getElementById('statusSleep').textContent = statusSleep;
+            document.getElementById('statusSleep').className = `result-status status-${classSleep}`;
+            document.getElementById('descSleep').textContent = dSleep;
+
+            document.getElementById('valStress').textContent = stress;
+            document.getElementById('statusStress').textContent = statusStress;
+            document.getElementById('statusStress').className = `result-status status-${classStress}`;
+            document.getElementById('descStress').textContent = dStress;
+
+            document.getElementById('statusSymp').textContent = statusSymp;
+            document.getElementById('statusSymp').className = `result-status status-${classSymp}`;
+
+            // Populate Action Plans
+            const actionUl = document.createElement('ul');
+            actionPlans.forEach(plan => {
+                const li = document.createElement('li');
+                li.innerHTML = plan;
+                actionUl.appendChild(li);
+            });
+            document.getElementById('resRekomendasi').innerHTML = '';
+            document.getElementById('resRekomendasi').appendChild(actionUl);
+
+            // Switch Screen
+            document.getElementById('formSection').style.display = 'none';
+            document.getElementById('results').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Reset
+        document.getElementById('resetBtn').addEventListener('click', function () {
+            document.getElementById('healthForm').reset();
+            document.getElementById('waterVal').innerText = "4";
+            document.getElementById('waterLtr').innerText = "1.0";
+
+            symptomCheckboxes.forEach(cb => { cb.parentElement.classList.remove('active'); });
+            chkTidakAda.checked = true;
+            chkTidakAda.parentElement.classList.add('active');
+
+            document.getElementById('results').style.display = 'none';
+            document.getElementById('formSection').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+
+</html>
