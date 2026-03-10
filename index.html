@@ -472,18 +472,6 @@
 
 <body>
 
-    <nav id="navbar">
-        <div class="logo">
-            <i class="fa-solid fa-heart-pulse"></i>
-            SehatKu
-        </div>
-        <div class="nav-links">
-            <a href="#beranda">Beranda</a>
-            <a href="#parameter">Parameter Evaluasi</a>
-            <a href="#hasil">Hasil Analisis</a>
-            <a href="/cek kesehatan/" class="cta-nav">Cek Sekarang</a>
-        </div>
-    </nav>
 
     <header id="beranda">
         <div class="badge"><i class="fa-solid fa-check-circle" style="margin-right: 5px;"></i> Algoritma Cek Kesehatan
@@ -524,6 +512,17 @@
             <h3>Cek BMI (Berat Ideal)</h3>
             <p>Hitung proporsi berat dan tinggi badan untuk mengetahui apakah tubuhmu memilki berat ideal, kurus, atau
                 obesitas.</p>
+            <div
+                style="margin-top: 15px; font-size: 14px; text-align: left; background: var(--success-light); padding: 10px; border-radius: 10px; border: 1px solid #A7F3D0;">
+                <p><strong>Rumus:</strong> Berat (kg) / (Tinggi (m) * Tinggi (m))</p>
+                <ul style="margin-left: 15px; margin-top: 5px; color: var(--text-main);">
+                    <li><i class="fa-solid fa-check" style="color: var(--success-color);"></i> <strong>Sehat
+                            (Ideal):</strong> 18.5 - 24.9</li>
+                    <li><i class="fa-solid fa-xmark" style="color: #EF4444;"></i> <strong>Kurang Sehat:</strong>
+                        < 18.5 (Kurus) atau> 24.9 (Berlebih/Obesitas)
+                    </li>
+                </ul>
+            </div>
         </div>
 
         <div class="feature-box">
@@ -563,7 +562,15 @@
                 <p>SehatKu memproses datamu menjadi skor akhir yang simpel dan mudah dimengerti.</p>
                 <ul class="report-features">
                     <li><i class="fa-solid fa-circle-check"></i> <strong>Skor Akhir:</strong> Nilai kesehatanmu dari
-                        0-100.</li>
+                        0-100.
+                        <ul style="margin-left: 25px; margin-top: 5px; font-size: 14px; list-style: none;">
+                            <li><i class="fa-solid fa-check" style="color: var(--success-color); font-size: 14px;"></i>
+                                <strong>Sehat:</strong> 70 - 100</li>
+                            <li><i class="fa-solid fa-xmark" style="color: #EF4444; font-size: 14px;"></i>
+                                <strong>Kurang Sehat:</strong>
+                                < 70</li>
+                        </ul>
+                    </li>
                     <li><i class="fa-solid fa-circle-check"></i> <strong>Status Detail:</strong> Label instan seperti
                         "Ideal", "Dehidrasi", atau "Kurang Tidur".</li>
                     <li><i class="fa-solid fa-circle-check"></i> <strong>Saran Tindakan:</strong> Panduan praktis
@@ -590,12 +597,6 @@
         </div>
     </section>
 
-    <section class="bottom-banner">
-        <h2>Cek Kondisi Tubuhmu Sekarang!</h2>
-        <p style="color: var(--text-muted); font-size: 18px;">Cepat, gratis, dan rahasia terjamin.</p>
-        <a href="/cek kesehatan/" class="btn-large">Mulai Tes <i class="fa-solid fa-arrow-right"
-                style="margin-left: 10px;"></i></a>
-    </section>
 
     <footer>
         <div class="logo" style="justify-content: center; font-size: 20px; margin-bottom: 10px;">
@@ -604,17 +605,6 @@
         <p>&copy; 2026 SehatKu Application.</p>
     </footer>
 
-    <script>
-        // Navbar Scrolled Effect
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-    </script>
 </body>
 
 </html>
